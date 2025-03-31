@@ -5,6 +5,9 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
+using Newtonsoft.Json;
+using ServerApp_Chat.Classes;
 
 namespace ServerApp_Chat
 {
@@ -22,13 +25,31 @@ namespace ServerApp_Chat
             while (true)
             {
                 TcpClient client = await listener.AcceptTcpClientAsync();
+
+                await AuthorizationAndRegistrationClient(client);
+            }
+        }
+
+        private async Task AuthorizationAndRegistrationClient(TcpClient client)
+        {
+            NetworkStream stream = client.GetStream();
+
+            while (true)
+            {
+                byte[] buffer = new byte[1024];
+                int bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length);
+                string receivedJsonData = Encoding.UTF8.GetString(buffer, 0, bytesRead);
+                Client receivedClientData = JsonConvert.DeserializeObject<Client>(receivedJsonData);
+
+                // Work with db
+
+                break;
             }
         }
     }
 
     class Program
     {
-
         static async Task Main(string[] args)
         {
             Server server = new Server();

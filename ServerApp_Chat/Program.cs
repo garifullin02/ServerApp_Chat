@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using Newtonsoft.Json;
@@ -26,7 +27,8 @@ namespace ServerApp_Chat
             {
                 TcpClient client = await listener.AcceptTcpClientAsync();
 
-                await AuthorizationAndRegistrationClient(client);
+                Thread threadSeparatedForClient = new Thread(async () => await AuthorizationAndRegistrationClient(client));
+                threadSeparatedForClient.Start();
             }
         }
 
@@ -42,7 +44,8 @@ namespace ServerApp_Chat
                 Client receivedClientData = JsonConvert.DeserializeObject<Client>(receivedJsonData);
 
                 // Work with db
-
+                
+                Console.WriteLine($"Client {receivedClientData._userName} {receivedClientData._password} connected");
                 break;
             }
         }

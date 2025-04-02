@@ -11,10 +11,10 @@ namespace ServerApp_Chat.Classes
         // _RegistrationCheck = 0
         // _AuthorizationCheck = 1
 
-        private string _firstName;
-        private string _userName;
-        private string _password;
-        private bool _authorizationAndRegistrationCheck;
+        public string _firstName {  get; set; }
+        public string _userName {  get; set; }
+        public string _password { get; set; }
+        public bool _authorizationAndRegistrationCheck { get; set; }
 
         public Client(string firstName, string userName, string password, bool authorizationAndRegistrationCheck)
         {

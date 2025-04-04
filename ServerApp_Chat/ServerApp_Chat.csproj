@@ -47,6 +47,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Client.cs" />
+    <Compile Include="Classes\ClientForServer.cs" />
+    <Compile Include="Classes\Group.cs" />
+    <Compile Include="Classes\PersonalChat.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

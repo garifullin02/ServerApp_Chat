@@ -12,9 +12,9 @@ namespace ServerApp_Chat.Classes
         // _AuthorizationCheck = 1
 
         public string _uid { get; set; }
-        public string _firstName {  get; set; }
-        public string _userName {  get; set; }
+        public string _firstName { get; set; }
+        public string _userName { get; set; }
         public string _password { get; set; }
-        public bool _authorizationAndRegistrationCheck { get; set; }
+        public bool _authorizationOrRegistrationCheck { get; set; }
     }
 }
